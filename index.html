@@ -10,7 +10,10 @@ function getWeather(){
 	}).then(displayWeather)
 }
 function displayWeather(response){
-	console.log(response)
+	let locationOutput = response.name
+	let weatherOutput = response.weather[0].description
+	$('#location_output').text(locationOutput)
+	$('#weather_output').text(weatherOutput)
 }
 		</script>
 	</head>
