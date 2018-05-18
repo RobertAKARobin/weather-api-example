@@ -14,13 +14,14 @@
 function getWeather(){
 	const apiKey = '750c31e81f156a79d60e6c125ff32b57'
 	let locationInput = $('#location').val()
-	let url = `https://api.openweathermap.org/data/2.5/weather?q=${locationInput}&appid=${apiKey}`
+	let url = `https://api.openweathermap.org/data/2.5/weather?zip=${locationInput}&appid=${apiKey}`
 	$.ajax(url).then(displayWeather)
 }
 
 function displayWeather(response){
+	console.log(response)
 	let locationOutput = response['name']
-	let weatherOutput = respons['weather'][0]['description']
+	let weatherOutput = response['weather'][0]['description']
 	$('#location_output').text(locationOutput)
 	$('#weather_output').text(weatherOutput)
 }
@@ -30,7 +31,7 @@ function displayWeather(response){
 	<body>
 		<h1>What's the weather?</h1>
 
-		<input id="location" placeholder="City, Country" />
+		<input id="location" placeholder="ZIP" />
 		<button id="trigger" onclick="getWeather()">Check!</button>
 		<p id="error"></p>
 
