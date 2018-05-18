@@ -21,20 +21,37 @@ span{
 		<p>The weather in <span id="location_output">Minneapolis, MN</span> is <span id="weather_output">balmy</span>.</p>
 
 		<script>
+		let doDebug = (location.hash == '#debug')
+
 		function getWeather(){
+			console.log('Click detected! Preparing request...')
+			if(doDebug) debugger
+
 			const apiKey = '750c31e81f156a79d60e6c125ff32b57'
 			let locationInput = $('#location').val()
 			let url = `https://api.openweathermap.org/data/2.5/weather?zip=${locationInput}&appid=${apiKey}`
+			
+			console.log(`Sending request to ${url}`)
+			if(doDebug) debugger
 			$.ajax(url).then(displayWeather)
+			
+			console.log('Waiting for response...')
+			if(doDebug) debugger
 		}
 
 		function displayWeather(response){
+			console.log('Got response! It looks like this:')
+			console.log(JSON.stringify(response))
+			if(doDebug) debugger
+
+			console.log('Applying the data to the webpage...')
+			if(doDebug) debugger
 			let locationOutput = response['name']
 			let weatherOutput = response['weather'][0]['description']
 			$('#location_output').text(locationOutput)
 			$('#weather_output').text(weatherOutput)
 
-			console.log(response)
+			console.log('Done!')
 		}
 		</script>
 	</body>
