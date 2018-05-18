@@ -3,12 +3,22 @@
 	<head>
 		<title>API Weather Test</title>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script>
+function getWeather(){
+	$.ajax({
+		url: "https://api.openweathermap.org/data/2.5/weather?q=Minneapolis,US&appid=750c31e81f156a79d60e6c125ff32b57"
+	}).then(displayWeather)
+}
+function displayWeather(response){
+	console.log(response)
+}
+		</script>
 	</head>
 	<body>
 		<h1>What's the weather?</h1>
 
 		<input id="location" placeholder="City, Country" />
-		<button id="trigger">Check!</button>
+		<button id="trigger" onclick="getWeather()">Check!</button>
 		<p id="error"></p>
 
 		<p>The weather in <span id="location_output">Minneapolis, MN</span> is <span id="weather_output">balmy</span>.</p>
